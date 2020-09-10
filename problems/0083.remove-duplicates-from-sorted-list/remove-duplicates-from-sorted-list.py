@@ -6,23 +6,17 @@ class ListNode:
 
 class Solution:
     def deleteDuplicates(self, head: ListNode) -> ListNode:
-        new_head = ListNode(-1)
-        temp = new_head
-        last = -9999
+        res = ListNode(-1)
+        res.next = head
         while head:
-            print(head.val, last)
-            if head.val == last or (head.next and head.val == head.next.val):
-                last = head.val
-                head = head.next
+            if head.next and head.next.val == head.val:
+                head.next = head.next.next
             else:
-                temp.next = ListNode(head.val)
-                last = head.val
                 head = head.next
-                temp = temp.next
-        return new_head.next
+        return res.next
 
 l1 = ListNode(1)
-l2 = ListNode(2)
+l2 = ListNode(1)
 l3 = ListNode(2)
 l1.next = l2
 l2.next = l3
